@@ -1,0 +1,92 @@
+{
+  "Metadata": {
+    "DOI": "https://doi.org/10.1371/journal.pone.0244611"
+  },
+  "Author": [
+    {
+      "author-id": 1,
+      "firstname": "Alex",
+      "middlename": "O.",
+      "surname": "Holcombe",
+      "email": "alex@holcombe.com",
+      "attributes": {
+        "is-corresponding-author": true
+      },
+      "affiliation": [
+        1
+      ]
+    },
+    {
+      "author-id": 2,
+      "firstname": "Marton",
+      "surname": "Kovacs",
+      "email": "marton@kovacs.com",
+      "affiliation": [
+        2
+      ]
+    },
+    {
+      "author-id": 3,
+      "firstname": "Frederik",
+      "surname": "Aust",
+      "affiliation": [
+        3,
+        4
+      ]
+    },
+    {
+      "author-id": 4,
+      "firstname": "Balazs",
+      "surname": "Aczel",
+      "affiliation": [
+        2
+      ]
+    }
+  ],
+  "Role": [
+    {
+      "role-id": 1,
+      "name": "Conceptualization"
+    },
+    {
+      "role-id": 2,
+      "name": "Software"
+    },
+    {
+      "role-id": 3,
+      "name": "Writing – original draft"
+    },
+    {
+      "role-id": 4,
+      "name": "Writing – review & editing"
+    }
+  ],
+  "Affiliation": [
+    {
+      "institution-id": 1,
+      "name": "University of Sydney",
+      "city": "Sydney",
+      "country": "Australia",
+      "department": "School of Psychology"
+    },
+    {
+      "institution-id": 2,
+      "name": "ELTE, Eotvos Lorand University",
+      "city": "Budapest",
+      "country": "Hungary",
+      "department": "Institute of Psychology"
+    },
+    {
+      "institution-id": 3,
+      "name": "University of Cologne",
+      "city": "Cologne",
+      "country": "Germany"
+    },
+    {
+      "institution-id": 4,
+      "name": "University of Amsterdam",
+      "city": "Amsterdam",
+      "country": "Netherlands"
+    }
+  ]
+}

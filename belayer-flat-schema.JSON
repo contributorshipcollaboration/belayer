@@ -1,0 +1,369 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://raw.githubusercontent.com/mjaquiery/jams/master/schema_flat.json",
+    "title": "JSON schema for academic author accreditation",
+    "$comment": "The schema is built to be the backend standard for tenzing. The current version of the schema was inspired by the JAMS project.",
+    "type": "object",
+    "meta": {
+        "type": "object",
+        "properties": {
+            "flat": {
+                "type": "boolean",
+                "default": true,
+                "description": "If flat mode is enabled, all references to other objects must use ids rather than shorthand constructors (strings or object definitions). This mode is intended for machine-readbility where the schema result is exhaustive and fully expanded into separate objects"
+            }
+        }
+    },
+    "properties": {
+        "Metadata": {
+            "type": "object",
+            "description": "Corresponding metadata of the authors information",
+            "properties": {
+                "DOI": {
+                    "type": "string",
+                    "description": "The corresponding DOI of the paper."
+                }
+            },
+            "required": [
+                "DOI"
+            ]
+        },
+        "Role": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/role"
+            },
+            "uniqueItems": true
+        },
+        "Affiliation": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/institution"
+            },
+            "uniqueItems": true
+        },
+        "Funding": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/funding"
+            },
+            "uniqueItems": true
+        },
+        "Author": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/author"
+            },
+            "uniqueItems": true
+        },
+        "Authorgroup": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/author-group"
+            },
+            "uniqueItems": true
+        }
+    },
+    "anyOf": [
+        {
+            "required": [
+                "Author"
+            ]
+        },
+        {
+            "required": [
+                "Authorgroup"
+            ]
+        }
+    ],
+    "additionalProperties": false,
+
+    "$defs": {
+        "utils": {
+            "refid": {
+                "type": "number",
+                "description": "A unique identifier within instances of the object. For example, an author and an institution may both have the id 0, but no two authors may have the same id as eachother",
+                "minimum": 0
+            },
+            "score": {
+                "type": "number",
+                "description": "A metric of responsibility or contribution; higher = greater"
+            },
+            "PID": {
+                "type": "object",
+                "description": "A unique identifier",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Type of the PID (e.g., ORCID id)"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The value of the PID"
+                    }
+                },
+                "required": [
+                    "type",
+                    "id"
+                ]
+            },
+            "attributes": {
+                "type": "object",
+                "description": "A catch all for additional attributes of the author or author-group",
+                "properties": {
+                    "is-corresponding-author": {
+                        "type": "boolean",
+                        "description": "Whether Author is the corresponding author or not"
+                    },
+                    "deceased": {
+                        "type": "boolean",
+                        "description": "Whether Author is deceased or not"
+                    }
+                }
+            },
+            "role-wrapper": {
+                "description": "role_id of an existing role",
+                "$ref": "#/$defs/role/properties/role-id"
+            },
+            "institution-wrapper": {
+                "description": "institution-id of an existing institution",
+                "$ref": "#/$defs/institution/properties/institution-id"
+            },
+            "funding-wrapper": {
+                "description": "funding-id of an existing funding",
+                "$ref": "#/$defs/funding/properties/funding-id"
+            },
+            "author-wrapper": {
+                "description": "author-id of an existing author",
+                "$ref": "#/$defs/author/properties/author-id"
+            },
+            "author-group-wrapper": {
+                "description": "author-group-id of an existing author-group",
+                "$ref": "#/$defs/author-group/properties/author-group-id"
+            }
+        },
+        "role": {
+            "type": "object",
+            "properties": {
+                "role-id": {
+                    "$ref": "#/$defs/utils/refid"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the role"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A description of the activities comprising the role"
+                }
+            },
+            "required": [
+                "role-id",
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "institution": {
+            "type": "object",
+            "properties": {
+                "institution-id": {
+                    "$ref": "#/$defs/utils/refid"
+                },
+                "PID": {
+                    "$ref": "#/$defs/utils/PID"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the institution"
+                },
+                "department": {
+                    "type": "string",
+                    "description": "Name of the department within the institution"
+                },
+                "city": {
+                    "type": "string",
+                    "description": "City where the institution is based"
+                },
+                "postal-code": {
+                    "type": "number",
+                    "description": "Postal code of the institution"
+                },
+                "country-code": {
+                    "type": "string",
+                    "description": "Alpha-2 ISO country code"
+                },
+                "country": {
+                    "type": "string",
+                    "description": "Country where the institution is based"
+                },
+                "details": {
+                    "type": "object",
+                    "description": "A catch-all for other detailed properties of the Institution"
+                }
+            },
+            "required": [
+                "institution-id",
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "funding": {
+            "type": "object",
+            "properties": {
+                "funding-id": {
+                    "$ref": "#/$defs/utils/refid"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the award"
+                },
+                "desc": {
+                    "type": "string",
+                    "description": "A description of the award"
+                },
+                "reference": {
+                    "type": "string",
+                    "description": "Reference identifier attached to the funding award"
+                },
+                "source-institution": {
+                    "type": "object",
+                    "description": "Information on the institution providing the funding",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "Name of the institution"
+                        },
+                        "country-code": {
+                            "type": "string",
+                            "description": "Alpha-2 ISO country code"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "funding-id",
+                "name"
+            ],
+            "additionalProperties": false
+        },
+        "author": {
+            "type": "object",
+            "description": "Authors are one of the main components of the schema. Institutions, roles, and funding should all be linked to an author instance through reference ids",
+            "properties": {
+                "author-id": {
+                    "$ref": "#/$defs/utils/refid"
+                },
+                "string-name": {
+                    "type": "string",
+                    "description": "Name to appear on the publication."
+                },
+                "firstname": {
+                    "type": "string",
+                    "description": "First name of the Author"
+                },
+                "middlename": {
+                    "type": "string",
+                    "description": "Middle name of the Author"
+                },
+                "surname": {
+                    "type": "string",
+                    "description": "Surname of the Author"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address of the Author"
+                },
+                "PID": {
+                    "$ref": "#/$defs/utils/PID"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/utils/attributes"
+                },
+                "affiliation": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/institution-wrapper"
+                    },
+                    "uniqueItems": true
+                },
+                "role": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/role-wrapper"
+                    },
+                    "uniqueItems": true
+                },
+                "funding": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/funding-wrapper"
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "author-id",
+                "firstname",
+                "surname"
+            ],
+            "additionalProperties": false
+        },
+        "author-group": {
+            "type": "object",
+            "description": "Authorgroup is one of the main components of the schema. Institutions, roles, funding, and authors should all be linked to an authorgroup instance through reference ids.",
+            "properties": {
+                "author-group-id": {
+                    "$ref": "#/$defs/utils/refid"
+                },
+                "string-name": {
+                    "type": "string",
+                    "description": "The name of the group"
+                },
+                "PID": {
+                    "$ref": "#/$defs/utils/PID"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Email address of the authorgroup"
+                },
+                "attributes": {
+                    "$ref": "#/$defs/utils/attributes"
+                },
+                "affiliation": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/institution-wrapper"
+                    },
+                    "uniqueItems": true
+                },
+                "role": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/role-wrapper"
+                    },
+                    "uniqueItems": true
+                },
+                "funding": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/utils/funding-wrapper"
+                    },
+                    "uniqueItems": true
+                },
+                "authors": {
+                    "type": "array",
+                    "description": "It is optional to link the information of individual authors to an author-group.",
+                    "items": {
+                        "$ref": "#/$defs/utils/author-wrapper"
+                    },
+                    "uniqueItems": true
+                }
+            },
+            "required": [
+                "author-group-id",
+                "name"
+            ],
+            "additionalProperties": false
+        }
+    }
+}
