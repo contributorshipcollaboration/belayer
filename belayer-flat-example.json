@@ -8,21 +8,26 @@
       "firstname": "Alex",
       "middlename": "O.",
       "surname": "Holcombe",
-      "email": "alex@holcombe.com",
+      "email": "alex.holcombe@sydney.edu.au",
       "attributes": {
         "is-corresponding-author": true
       },
       "affiliation": [
         1
+      ],
+      "role": [
+        1, 2, 3, 4
       ]
     },
     {
       "author-id": 2,
       "firstname": "Marton",
       "surname": "Kovacs",
-      "email": "marton@kovacs.com",
       "affiliation": [
         2
+      ],
+      "role": [
+        1, 2, 3, 4
       ]
     },
     {
@@ -32,6 +37,9 @@
       "affiliation": [
         3,
         4
+      ],
+      "role": [
+        2, 3, 4
       ]
     },
     {
@@ -40,6 +48,9 @@
       "surname": "Aczel",
       "affiliation": [
         2
+      ],
+      "role": [
+        1, 2, 3, 4
       ]
     }
   ],
