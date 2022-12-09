@@ -10,7 +10,8 @@
       "surname": "Holcombe",
       "email": "alex.holcombe@sydney.edu.au",
       "attributes": {
-        "is-corresponding-author": true
+        "is-corresponding-author": true,
+        "byline-position": 1 
       },
       "affiliation": [
         1
@@ -23,6 +24,9 @@
       "author-id": 2,
       "firstname": "Marton",
       "surname": "Kovacs",
+      "attributes": {
+        "byline-position": 2
+      },
       "affiliation": [
         2
       ],
@@ -34,6 +38,9 @@
       "author-id": 3,
       "firstname": "Frederik",
       "surname": "Aust",
+      "attributes": {
+        "byline-position": 3 
+      },
       "affiliation": [
         3,
         4
@@ -46,6 +53,9 @@
       "author-id": 4,
       "firstname": "Balazs",
       "surname": "Aczel",
+      "attributes": {
+        "byline-position": 4
+      },
       "affiliation": [
         2
       ],

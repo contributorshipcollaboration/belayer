@@ -118,8 +118,19 @@
                     "deceased": {
                         "type": "boolean",
                         "description": "Whether Author is deceased or not"
+                    },
+                    "byline-position": {
+                        "type": "integer",
+                        "description": "Author place in author order"
+                    },
+                    "equal-contrib": {
+                        "type": "boolean",
+                        "description": "Whether the Author has equal contributions to another Author"
                     }
-                }
+                },
+                "required": [
+                    "byline-position"
+                ]
             },
             "role-wrapper": {
                 "description": "role_id of an existing role",
