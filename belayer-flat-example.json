@@ -1,6 +1,10 @@
 {
   "Metadata": {
-    "DOI": "https://doi.org/10.1371/journal.pone.0244611"
+    "DOI": "https://doi.org/10.1371/journal.pone.0244611",
+    "CROT": {
+      "name": "CRediT",
+      "url": "https://credit.niso.org/"
+    }
   },
   "Author": [
     {

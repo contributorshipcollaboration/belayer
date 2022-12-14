@@ -21,7 +21,21 @@
             "properties": {
                 "DOI": {
                     "type": "string",
-                    "description": "The corresponding DOI of the paper."
+                    "description": "The corresponding DOI of the paper"
+                },
+                "CROT": {
+                    "type": "object",
+                    "description": "The used Contributor Role Ontology and Taxonomy",
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the CROT"
+                        },
+                        "url": {
+                            "type": "string",
+                            "description": "URL to the CROT"
+                        }
+                    }
                 }
             },
             "required": [
